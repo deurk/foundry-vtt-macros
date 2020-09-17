@@ -6,7 +6,7 @@ const messagePrefix = "Nombre d'images miroir générées: ";
 ///// INFORMATION
 // Système : Pathfinder 1
 // Module(s) nécessaire(s) : Magic Token FX
-// Notes : 
+// Notes : Actor must only have ONE token on the map for this macro to work correctly
 
 ///// SCRIPT
 function castMirrorImages() {
@@ -61,7 +61,8 @@ function castMirrorImages() {
                 }
             }
         }];
-        TokenMagic.addUpdateFiltersOnSelected(params); 
+        const token = canvas.tokens.placeables.find(token => token.actor.id === hero.id);
+        TokenMagic.addUpdateFilters(token, params); 
     });  
 }
 

@@ -1,10 +1,13 @@
 ///// CONFIGURATION
 const heroName = "Anton Haralamb";
 
-///// INFORMATION
+///// INFORMATIONS
 // Système : Pathfinder 1
 // Module(s) nécessaire(s) : Magic Token FX
-// Notes : 
+// Modules(s) optionnel(s) : 
+
+///// NOTES
+// Si l'acteur configuré à plusieurs jetons sur la scène, seul le premier jeton retourné sera affecté.
 
 ///// SCRIPT
 function removeSingleMirrorImage() {

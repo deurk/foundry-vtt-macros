@@ -3,10 +3,14 @@ const heroName = "Anton Haralamb";
 const spellName = "Image miroir";
 const messagePrefix = "Nombre d'images miroir générées: ";
 
-///// INFORMATION
+///// INFORMATIONS
 // Système : Pathfinder 1
 // Module(s) nécessaire(s) : Magic Token FX
-// Notes : Actor must only have ONE token on the map for this macro to work correctly
+// Modules(s) optionnel(s) : Macro Marker (voir NOTES)
+
+///// NOTES
+// Si l'acteur configuré à plusieurs jetons sur la scène, seul le premier jeton retourné sera affecté.
+// Si le module Macro Marker est activé, copier le contenu entre DEBUT et FIN de la fonction macroMarker() dans l'onglet Marker.
 
 ///// SCRIPT
 function castMirrorImages() {
@@ -23,7 +27,9 @@ function castMirrorImages() {
     const spell = hero.items.find(item => item.type === "spell" && item.name === spellName);
     if (!spell) return ui.notifications.error("L'acteur <i>" + heroName + "</i> ne dispose pas du sort <i>" + spellName + "</i>");
         
-    // WORKAROUND : useSpell ne différencie pas les exécutions réussies ou ratées (BUG), on se base sur les notifications pour déterminer le résultat du lancement de sort
+    // WORKAROUND : useSpell ne différencie pas les exécutions réussies ou ratées (BUG),
+    // on se base sur les notifications pour déterminer le résultat du lancement de sort
+
     // Lancer le sort et consommer l'emplacement
     const notifLength =  ui.notifications.active.length;
     hero.useSpell(spell, {}, {skipDialog: true}).then(result => {
@@ -67,6 +73,13 @@ function castMirrorImages() {
         }];
         TokenMagic.addUpdateFilters(token, params); 
     });  
+}
+
+function macroMarker() {
+    // DEBUT
+    const heroName = "Anton Haralamb";
+    return game.actors.getName(heroName).getFlag("pf1", "spells.mirrorImages");
+    // FIN
 }
 
 castMirrorImages();

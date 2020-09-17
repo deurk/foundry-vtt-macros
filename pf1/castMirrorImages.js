@@ -10,10 +10,14 @@ const messagePrefix = "Nombre d'images miroir générées: ";
 
 ///// SCRIPT
 function castMirrorImages() {
-    const hero = game.actors.getName(heroName);
-
+    
     // Vérifier que l'acteur existe
+    const hero = game.actors.getName(heroName);
     if (!hero) return ui.notifications.error("L'acteur nommé <i>" + heroName + "</i> n'existe pas");
+
+    // Vérifier qu'un jeton de l'acteur existe
+    const token = canvas.tokens.placeables.find(token => token.actor.id === hero.id);
+    if (!token) return ui.notifications.error("L'acteur nommé <i>" + heroName + "</i> n'a pas de jeton sur la scène");
 
     // Vérifier que l'acteur dispose bien du sort
     const spell = hero.items.find(item => item.type === "spell" && item.name === spellName);
@@ -61,7 +65,6 @@ function castMirrorImages() {
                 }
             }
         }];
-        const token = canvas.tokens.placeables.find(token => token.actor.id === hero.id);
         TokenMagic.addUpdateFilters(token, params); 
     });  
 }

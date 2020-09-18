@@ -58,12 +58,12 @@ function castMirrorImages() {
             filterType: "images",
             filterId: "myMirrorImages",
             time: 0,
-            nbImage: mirrorImages + 1,
-            alphaImg: 1.0,
-            alphaChr: 0.0,
+            nbImage: mirrorImages,
+            alphaImg: 0.6,
+            alphaChr: 1.0,
             blend: 4,
             ampX: 0.20,
-            ampY: 0.20,
+            ampY: 0.35,
             zOrder: 20,
             animated : {
                 time: { 

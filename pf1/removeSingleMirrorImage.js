@@ -2,9 +2,11 @@
 const heroName = "Anton Haralamb";
 
 ///// INFORMATIONS
-// Système : Pathfinder 1
-// Module(s) nécessaire(s) : Magic Token FX
-// Modules(s) optionnel(s) : 
+// Base : Foundry VTT (0.6.6)
+// Système : Pathfinder 1 (0.73.7)
+// Module(s) nécessaire(s) : Magic Token FX (0.4.2b)
+// Modules(s) optionnel(s) : -
+// Auteur(s) : Alexandre Nizoux (deurk#5568), Dorgendubal
 
 ///// NOTES
 // Si l'acteur configuré à plusieurs jetons sur la scène, seul le premier jeton retourné sera affecté.

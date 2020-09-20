@@ -4,9 +4,11 @@ const spellName = "Image miroir";
 const messagePrefix = "<h3>Nombre d'images miroir générées</h3>";
 
 ///// INFORMATIONS
-// Système : Pathfinder 1
-// Module(s) nécessaire(s) : Magic Token FX
-// Modules(s) optionnel(s) : Macro Marker (voir NOTES)
+// Base : Foundry VTT (0.6.6)	// Système : Pathfinder 1
+// Système : Pathfinder 1 (0.73.7)	// Module(s) nécessaire(s) : Magic Token FX
+// Module(s) nécessaire(s) : Magic Token FX (0.4.2b)	
+// Modules(s) optionnel(s) : Macro Marker (voir NOTES)	// Modules(s) optionnel(s) : Macro Marker (voir NOTES)
+// Auteur(s) : Alexandre Nizoux (deurk#5568), Dorgendubal, Noon
 
 ///// NOTES
 // Si l'acteur configuré à plusieurs jetons sur la scène, seul le premier jeton retourné sera affecté.

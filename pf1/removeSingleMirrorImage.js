@@ -22,8 +22,50 @@ function removeSingleMirrorImage() {
     const token = canvas.tokens.placeables.find(token => token.actor.id === hero.id);
     if (!token) return ui.notifications.error("L'acteur nommé <i>" + heroName + "</i> n'a pas de jeton sur la scène");
 
-    // Récupérer le nombre d'images miroir et le mettre à jour
-    let mirrorImages = hero.getFlag("pf1", "spells.mirrorImages") - 1;
+    // Récupérer le nombre d'images miroir
+    let mirrorImages = hero.getFlag("pf1", "spells.mirrorImages");
+
+    // Vérifier si c'est le héros qui est touché ou une de ses images
+    let touchRoll = new Roll("1d" + (mirrorImages + 1)).roll();
+    if (touchRoll.total == 1) {
+        let params =
+            [{
+                filterType: "splash",
+                filterId: "mySplash",
+                color: 0x990505,
+                padding: 40,
+                autoDestroy: true,
+                time: Math.random()*1000,
+                seed: Math.random(),
+                splashFactor: 0.5,
+                spread: 1.5,
+                blend: 8,
+                dimX: 1,
+                dimY: 1,
+                cut: false,
+                textureAlphaBlend: true,
+                anchorX: 0.32+(Math.random()*0.36),
+                anchorY: 0.32+(Math.random()*0.36),
+                animated:
+                {
+                    color: 
+                    {
+                        active: true, 
+                        loopDuration: 1000,
+                        loops: 5,
+                    }
+                }
+            }];
+        TokenMagic.addUpdateFilters(token, params);
+        ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ token: token }),
+            content: 'Aïe !'
+        }, { chatBubble: true });
+        return ;
+    }
+
+    // Mettre à jour le nombre d'images miroir
+    mirrorImages = mirrorImages - 1;
     hero.setFlag("pf1", "spells", {"mirrorImages": (mirrorImages < 1 ? 0 : mirrorImages)});
     
     // Supprimer l'effet visuel du jeton si il ne reste plus d'images miroir
